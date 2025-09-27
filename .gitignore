@@ -1,0 +1,6 @@
+# Cartelle da ignorare
+node_modules/
+
+# File da ignorare
+npm-debug.log*
+.env

@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "SolwayBold";
+    src: url("../font/Solway-Medium.ttf");
+}
+@font-face {
+    font-family: "SolwayBasic";
+    src: url("../font/Solway-Regular.ttf");
+}
+@font-face {
+    font-family: "SolwayLight";
+    src: url("../font/Solway-Light.ttf");
+}
+*
+{
+    transition: all 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+    overflow: hidden;
+}
+*::-webkit-scrollbar
+{
+    display: none;
+}
+html
+{
+    width: 100%;
+    height: 100%;
+}
+body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.struct
+{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}

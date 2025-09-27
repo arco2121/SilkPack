@@ -1,8 +1,8 @@
 //Import libraries
-import express from "express"
-import ejs from "ejs"
-import {createClient} from "@supabase/supabase-js"
-import multer from "multer"
+const express = require("express")
+const ejs = require("ejs")
+const {createClient} =  require("@supabase/supabase-js")
+const multer = require("multer")
 
 //Config
 const port = process.env.PORT || 3000
@@ -20,14 +20,18 @@ app.use(express.json())
 app.use(express.static("sources"))
 
 const auth = (req,res,next) => {
-    const sessionId = req.headers.cookie.split("=")[1]
-    if(!sessionId)
-        return
+    const cookie = req.headers.cookie
+    if(!cookie)
+    {
+        res.locals.user = {}
+    }
+    const sessionId = cookie.split("=")[1]
     if(!sessions[sessionId])
-        return
+    {
+        res.locals.user = {}
+    }
     res.locals.user = sessions[sessionId]
     next()
-    return;
 }
 
 //Endpoints
@@ -39,5 +43,5 @@ app.get("/",auth,(req,res) => {
     console.log(err?err:"Server online")
 }) */
 app.listen(port,debug_host,(err) => {
-    console.log(err?err:"Server online")
+    console.log(err?err:"Server online : http://" + debug_host + ":" + port)
 })

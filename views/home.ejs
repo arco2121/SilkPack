@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silk Pack</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    
+    <div class="struct">
+        <div class="col">
+            <h1>Silk Pack</h1>
+            <h3>As soft as the silk<br>build your own web</h3>
+        </div>
+        <div class="col">
+            <button id="explore">Explore</button>
+        </div>
+        <div class="row">
+            <%if(locals.user.username){%>
+                <h6 id="login">Logged as <%=locals.user.username%></h6>
+            <%}else{%>
+                <h6 id="login">Login with username</h6>
+            <%}%>
+        </div>
+    </div>
 </body>
 </html>

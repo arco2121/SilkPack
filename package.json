@@ -1,7 +1,7 @@
 {
   "name": "silkpack",
   "version": "1.0.0",
-  "description": "\"As soft as the silk\"",
+  "description": "\"As soft as the silk, build your own web\"",
   "main": "app.js",
   "scripts": {
     "test": "node app.js"
