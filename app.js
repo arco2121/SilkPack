@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended : true}))
 app.set("view engine","ejs")
 app.use(express.json())
 app.use(express.static("sources"))
+app.locals.baseUrl = "https://" + debug_host + ":" + port + "/"
 
 const auth = (req,res,next) => {
     const cookie = req.headers.cookie
@@ -25,12 +26,16 @@ const auth = (req,res,next) => {
     {
         res.locals.user = {}
     }
-    const sessionId = cookie.split("=")[1]
-    if(!sessions[sessionId])
+    else
     {
-        res.locals.user = {}
+        const sessionId = cookie.split("=")[1]
+        if(!sessions[sessionId])
+        {
+            res.locals.user = {}
+        }
+        else
+            res.locals.user = sessions[sessionId]
     }
-    res.locals.user = sessions[sessionId]
     next()
 }
 

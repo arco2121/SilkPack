@@ -1,5 +1,6 @@
 # Cartelle da ignorare
 node_modules/
+npmEme/
 
 # File da ignorare
 npm-debug.log*

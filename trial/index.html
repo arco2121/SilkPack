@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silk Pack</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="../sources/css/index.css">
 </head>
 <body>
     <div class="struct toEnd">
@@ -13,17 +13,13 @@
                 <h1>Silk Pack</h1>
                 <h5>As soft as the silk,<br>build your own web</h5>
             </div>
-            <div class="row">
+            <div class="col">
                 <button onclick="location.href = '/explore'" id="explore">Explore</button>
-                <button onclick="location.href = '/info'" id="explore">Info</button>
+                <button onclick="location.href = '/info'" id="explore">Explore</button>
             </div>
         </div>
         <div class="row bottom">
-            <%if(locals.user.username){%>
-                <h6 id="login" onclick="location.href = '/dashboard'">Logged as <%=locals.user.username%></h6>
-            <%}else{%>
-                <h6 id="login" onclick="location.href = '/login'">Login with username</h6>
-            <%}%>
+            <h6 id="login">Login with username</h6>
         </div>
     </div>
 </body>

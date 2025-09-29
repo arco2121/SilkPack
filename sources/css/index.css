@@ -1,6 +1,6 @@
 @font-face {
     font-family: "SolwayBold";
-    src: url("../font/Solway-Medium.ttf");
+    src: url("../font/Solway-Bold.ttf");
 }
 @font-face {
     font-family: "SolwayBasic";
@@ -12,14 +12,61 @@
 }
 *
 {
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     user-select: none;
     -webkit-user-drag: none;
     overflow: hidden;
+    font-family: "SolwayBasic";
+    color: var(--font);
 }
 *::-webkit-scrollbar
 {
     display: none;
+}
+:root
+{
+    --silk : #FFFDF6;
+    --font : #313131;
+    --back : #FAF6E9;
+    --backbut : #ECE8D9;
+}
+@keyframes appearBackground {
+    0%{
+        background-color: var(--back);
+    }
+    70%{
+       background-color: var(--silk);
+    }
+    100%{
+        background-color: var(--back);
+    }
+}
+@keyframes appear {
+    0%{
+        scale: 0.95;
+        opacity: 0;
+        transform: translateY(15px);
+        body
+        {
+            background-color: var(--back);
+        }
+    }
+    70%{
+        transform: translateY(-5px);
+        body
+        {
+            background-color: var(--silk);
+        }
+    }
+    100%{
+        scale: 1;
+        opacity: 1;
+        transform: translateY(0px);
+        body
+        {
+            background-color: var(--back);
+        }
+    }
 }
 html
 {
@@ -31,12 +78,92 @@ body
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    background-color: var(--back);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: appearBackground 0.5s ease-in-out;
 }
 .struct
 {
     display: flex;
-    width: 100%;
-    height: 100%;
+    flex-direction: column;
+    width: 95%;
+    height: 95%;
     align-items: center;
     justify-content: center;
+    border: solid var(--font) 3px;
+    border-radius: 10px;
+}
+.struct *
+{
+    animation: appear 0.5s ease-in-out;
+}
+h5
+{
+    font-family: "SolwayLight";
+}
+h1
+{
+    font-size: 45px;
+    font-family: "SolwayBold";
+}
+.row
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 95%;
+    align-items: center;
+    justify-content: center;
+}
+.toEnd
+{
+    justify-content: flex-end;
+}
+.col
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 95%;
+    align-items: center;
+    justify-content: center;
+}
+.centered
+{
+    margin: auto;
+}
+.bottom
+{
+    margin-bottom: 10px;
+}
+button
+{
+    background-color: var(--backbut);
+    padding: 10px;
+    margin: 15px;
+    border-radius: 13px;
+    border: solid var(--font) 3px;
+    font-family: "SolwayBold";
+    font-size: 17px;
+    box-shadow: 0px 5px 5px var(--font);
+    min-width: 100px;
+}
+button:active
+{
+    scale: 0.95;
+    background-color: var(--font);
+    color: var(--silk);
+    box-shadow: 0px 0px 0px 0px var(--font);
+}
+#login
+{
+    border-radius: 10px;
+    border: solid var(--font) 3px;
+    padding: 10px;
+}
+#login:active
+{
+    scale: 0.95;
 }
