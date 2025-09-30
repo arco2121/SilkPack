@@ -17,10 +17,15 @@
     -webkit-user-drag: none;
     font-family: "SolwayBasic";
     color: var(--font);
+    text-align: center;
 }
 *::-webkit-scrollbar
 {
     display: none;
+}
+*:focus
+{
+    outline: none;
 }
 :root
 {
@@ -147,7 +152,7 @@ h1
 }
 .bottom
 {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .spe
 {

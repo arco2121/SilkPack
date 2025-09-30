@@ -50,7 +50,7 @@ app.get("/login",(req,res) => {
 app.post("/login", async (req,res) => {
     const usern = req.body.username
     const password = await argon2.hash(req.body.password)
-    const {error ,response} = database.from("users").select("*").eq("username",usern).single()
+    const {response, error} = await database.from("users").select("*").eq("username",usern).single()
     if(error||!response)
     {
         res.render("login",{error : "Username or password incorrect"})
@@ -67,6 +67,29 @@ app.post("/login", async (req,res) => {
     }
     res.render("login",{error : "Username or password incorrect"})
     return
+})
+
+app.get("/register",(req,res) => {
+    res.render("register")
+})
+app.post("/register", async (req,res) => {
+    const user = req.body.username
+    const pass = req.body.password
+    const mark = req.body.pic
+    const password = await argon2.hash(pass,{
+        type : argon2.argon2id
+    })
+    const {resp,error} = await database.from("users").insert([{
+        username : user,
+        hashed_password : password,
+        mark_pic : mark
+    }])
+    if(error)
+    {
+        res.render("register", {error : "Error creating the account, retry"})
+        return
+    }
+    res.redirect("/login")
 })
 
 /* app.listen(port,(err) => {

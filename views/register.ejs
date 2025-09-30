@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Pack</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+    <div class="struct toEnd">
+        <div class="row centered">
+            <div class="col">
+                <img id="log" src="/img/login.png" width="250" height="250">
+                <h4>Select a mark<h4>
+                <div class="row">
+                    <button id="backw"><-</button>
+                    <button id="forw">-></button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col">
+                    <div class="col gap">
+                        <%if(locals.error){%>
+                            <h4 class="spe"><%=locals.error%></h4>
+                        <%}%>
+                        <h2>Register a SilkAccount</h2>
+                        <form class="col" action="/register" method="post">
+                            <input type="text" name="username" required minlength="5" placeholder="Username">
+                            <input type="password" name="password" required minlength="8" placeholder="Password"> 
+                            <input type="hidden" id="pic" name="pic" value="/img/login.png">
+                            <div class="row">
+                                <input type="submit" class="submit" value="Register">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom">
+            <h6 onclick="location.href = '/login'">Go back to login</h6>
+        </div>
+    </div>
+    <script>
+        let n = 0
+        const k = ["",1,2,3]
+        const control = (para) => {
+            if(para == "+")
+                n+1>=k.length?n:n++
+            else
+                n-1<0?n:n--
+        }
+
+        document.getElementById("forw").onclick = () => {
+            control("+")
+            document.getElementById("log").src = "/img/login" + k[n] + ".png"
+            document.getElementById("pic").value = "/img" + document.getElementById("log").src.split("/img")[1] 
+        }
+        document.getElementById("backw").onclick = () => {
+            control("-")
+            document.getElementById("log").src = "/img/login" + k[n] + ".png"
+            document.getElementById("pic").value = "/img" + document.getElementById("log").src.split("/img")[1] 
+        }
+    </script>
+</body>
+</html>
