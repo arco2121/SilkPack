@@ -18,6 +18,7 @@
   "homepage": "https://github.com/arco2121/SilkPack#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
+    "argon2": "^0.44.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "multer": "^2.0.2"

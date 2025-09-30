@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silk Pack</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/favicon.png">
 </head>
 <body>
     <div class="struct toEnd">
-        <div class="col centered">
+        <div class="row centered">
             <div class="col">
-                <h1>Silk Pack</h1>
-                <h5>As soft as the silk,<br>build your own web</h5>
+                <div class="col spe">
+                    <h1>Silk Pack</h1>
+                    <h5>As soft as the silk,<br>build your own web</h5>
+                </div>
+                <div class="row">
+                    <button onclick="location.href = '/explore'">Explore</button>
+                    <button onclick="location.href = '/info'">Info</button>
+                </div>
             </div>
-            <div class="row">
-                <button onclick="location.href = '/explore'" id="explore">Explore</button>
-                <button onclick="location.href = '/info'" id="explore">Info</button>
+            <div class="col">
+                <img id="log" src="/img/logo.png" width="280" height="280">
             </div>
         </div>
         <div class="row bottom">
             <%if(locals.user.username){%>
-                <h6 id="login" onclick="location.href = '/dashboard'">Logged as <%=locals.user.username%></h6>
+                <h6 onclick="location.href = '/dashboard'">Logged as <%=locals.user.username%></h6>
             <%}else{%>
-                <h6 id="login" onclick="location.href = '/login'">Login with username</h6>
+                <h6 onclick="location.href = '/login'">Login with username</h6>
             <%}%>
         </div>
     </div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Pack</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+    <div class="struct toEnd">
+        <div class="row centered">
+            <div class="col">
+                <% 
+                    const k = ["",1,2,3]
+                    const y = Math.floor(Math.random()*(k.length-1) + 1)
+                    const n = k[y]
+                %>
+                <img id="log" src="/img/login<%=n%>.png" width="250" height="250">
+            </div>
+            <div class="col">
+                <div class="col">
+                    <div class="col gap">
+                        <%if(locals.error){%>
+                            <h4 class="spe"><%=locals.error%></h4>
+                        <%}%>
+                        <h2>Login with SilkAccount</h2>
+                        <form id="logn" class="col" action="/login" method="post">
+                            <input type="text" name="username" required minlength="5" placeholder="Username">
+                            <input type="password" name="password" required minlength="8" placeholder="Password"> 
+                            <div class="row">
+                                <input type="submit" class="submit" value="Login">
+                                <button onclick="location.href = '/register'">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom">
+            <h6 onclick="location.href = '/'">Go back to the home</h6>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+</html>

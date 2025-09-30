@@ -3,6 +3,7 @@ const express = require("express")
 const ejs = require("ejs")
 const {createClient} =  require("@supabase/supabase-js")
 const multer = require("multer")
+const argon2 = require("argon2")
 
 //Config
 const port = process.env.PORT || 3000
@@ -18,7 +19,6 @@ app.use(express.urlencoded({extended : true}))
 app.set("view engine","ejs")
 app.use(express.json())
 app.use(express.static("sources"))
-app.locals.baseUrl = "https://" + debug_host + ":" + port + "/"
 
 const auth = (req,res,next) => {
     const cookie = req.headers.cookie
@@ -42,6 +42,31 @@ const auth = (req,res,next) => {
 //Endpoints
 app.get("/",auth,(req,res) => {
     res.render("home")
+})
+
+app.get("/login",(req,res) => {
+    res.render("login")
+})
+app.post("/login", async (req,res) => {
+    const usern = req.body.username
+    const password = await argon2.hash(req.body.password)
+    const {error ,response} = database.from("users").select("*").eq("username",usern).single()
+    if(error||!response)
+    {
+        res.render("login",{error : "Username or password incorrect"})
+        return
+    }
+    const match = await argon2.verify(response.hashed_password,password)
+    if(match)
+    {
+        const id = crateCookie()
+        sessions[id] = usern
+        res.setHeader("Set-Cookie","sessionId=" + id, "HttpOnly")
+        res.redirect("/")
+        return
+    }
+    res.render("login",{error : "Username or password incorrect"})
+    return
 })
 
 /* app.listen(port,(err) => {

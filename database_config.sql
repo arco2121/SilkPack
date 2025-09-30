@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS public.users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     username TEXT UNIQUE NOT NULL,
     hashed_password TEXT NOT NULL, 
-    user_profile_pic_url TEXT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
