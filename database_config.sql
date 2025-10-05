@@ -1,22 +1,33 @@
+DROP TABLE IF EXISTS public.saved_webs_users CASCADE;
+DROP TABLE IF EXISTS public.webs CASCADE;
+DROP TABLE IF EXISTS public.users CASCADE;
+
 CREATE TABLE IF NOT EXISTS public.users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     username TEXT UNIQUE NOT NULL,
     hashed_password TEXT NOT NULL, 
-    mark_pic TEXT NOT NULL,
+    mark_pic TEXT,
+    can_access BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS public.webs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
+    id_name TEXT NOT NULL,
     symbol_heart_url TEXT NOT NULL,
     symbol_spade_url TEXT NOT NULL,
     symbol_diamond_url TEXT NOT NULL,
     symbol_club_url TEXT NOT NULL,
-    
+    symbol_url TEXT NOT NULL,
+    background_url TEXT NOT NULL,
+    color_heart TEXT,
+    color_spade TEXT,
+    color_diamond TEXT,
+    color_club TEXT,
+    color_background TEXT,
     font_url TEXT NULL, 
     is_public BOOLEAN NOT NULL DEFAULT FALSE, 
-    
-    owner_id UUID NOT NULL, 
+    owner_id UUID, 
     CONSTRAINT fk_owner
         FOREIGN KEY (owner_id) 
         REFERENCES public.users (id)
@@ -35,7 +46,12 @@ CREATE TABLE IF NOT EXISTS public.saved_webs_users (
         ON DELETE CASCADE,
         
     CONSTRAINT fk_web
-        FOREIGN KEY (style_id) 
+        FOREIGN KEY (style_id)
         REFERENCES public.webs (id)
         ON DELETE CASCADE
 );
+
+INSERT INTO public.users(username,hashed_password,can_access) VALUES ('Platform','',false);
+
+INSERT INTO public.webs (id_name,background_url,symbol_heart_url,symbol_spade_url,symbol_diamond_url,symbol_club_url,symbol_url,is_public,color_background,color_heart,color_spade,color_diamond,color_club,owner_id) VALUES
+('Silksong','/img/webs/default/background.png','/img/webs/default/heart.png','/img/webs/default/spade.png','/img/webs/default/diamond.png','/img/webs/default/club.png','/img/webs/default/default.png',true,'#FAF6E9','#313131','#313131','#313131','#313131',(SELECT id from public.users WHERE username = 'Platform'));

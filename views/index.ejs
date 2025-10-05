@@ -16,8 +16,8 @@
                     <h5>As soft as the silk,<br>build your own web</h5>
                 </div>
                 <div class="row">
-                    <button onclick="location.href = '/explore'">Explore</button>
-                    <button onclick="location.href = '/info'">Info</button>
+                    <a class="button" href='/explore'>Explore</a>
+                    <a class="button" href='/info'>Info</a>
                 </div>
             </div>
             <div class="col">
@@ -25,12 +25,13 @@
             </div>
         </div>
         <div class="row bottom">
-            <%if(locals.user.username){%>
-                <h6 onclick="location.href = '/dashboard'">Logged as <%=locals.user.username%></h6>
+            <%if(locals.user){%>
+                <a href='/dashboard'>Logged as <%=locals.user.username%></a>
             <%}else{%>
-                <h6 onclick="location.href = '/login'">Login with username</h6>
+                <a href='/login'>Login with username</a>
             <%}%>
         </div>
     </div>
+    <script src="/js/index.js"></script>
 </body>
 </html>

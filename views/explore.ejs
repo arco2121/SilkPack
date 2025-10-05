@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Pack</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" href="/img/favicon.png">
+</head>
+<body>
+    <div class="struct toEnd">
+        <input type="search" id="webs-search" placeholder="Search for a web" value="<%=locals.value%>">
+        <div class="row centered gride">
+            <%if(!locals.webs){%>
+                <h3 class="full">Apparently nothing to see here</h3>
+            <%}else{%>
+                <%locals.webs.forEach(web => {%>
+                    <div class="card col" onclick="location.href = '/web/<%=web.id%>'">
+                        <div class="col container" style="background:<%=web.color_background%>;">
+                            <img src="<%=web.symbol_url%>" width="30" height="30">
+                        </div>
+                        <div class="col">
+                            <h5><%=web.id_name%></h5>
+                            <h6>by <%=web.users.username%></h6>
+                        </div>
+                    </div>
+                <%})%>
+            <%}%>
+        </div>
+        <div class="row bottom">
+            <a class="dbutton" href='/'>Go back to home</a>
+            <a class="dbutton" href='/info'>How to search</a>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+</html>

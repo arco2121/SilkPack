@@ -12,12 +12,14 @@
 }
 *
 {
-    transition: all 0.2s ease;
     user-select: none;
     -webkit-user-drag: none;
     font-family: "SolwayBasic";
     color: var(--font);
     text-align: center;
+}
+a, .submit, button,.button, .card, input, #log {
+    transition: filter 0.2s ease , transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, scale 0.2s ease;
 }
 *::-webkit-scrollbar
 {
@@ -33,17 +35,7 @@
     --font : #313131;
     --back : #FAF6E9;
     --backbut : #ECE8D9;
-}
-@keyframes appearBackground {
-    0%{
-        background-color: var(--back);
-    }
-    50%{
-       background-color: var(--silk);
-    }
-    100%{
-        background-color: var(--back);
-    }
+    --shad : #31313185;
 }
 @keyframes backforth {
     0%{
@@ -58,33 +50,28 @@
 }
 @keyframes appear {
     0%{
-        scale: 0.95;
         opacity: 0;
-        transform: translateY(10px);
-
+        transform: translateY(-30px);
     }
     50%{
-        transform: translateY(-20px);
+        transform: translateY(10px);
     }
     100%{
-        scale: 1;
         opacity: 1;
         transform: translateY(0px);
     }
 }
-@keyframes diappear  {
+@keyframes disappear  {
     0% {
-        scale: 1;
         opacity: 1;
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-20px);
+        transform: translateY(10px);
     }
     100% {
-        scale: 0.95;
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(-30px);
     }
 }
 html
@@ -99,7 +86,6 @@ body
     height: 100%;
     margin: 0 auto;
     background-color: var(--back);
-    animation: appearBackground 0.5s ease-in-out;
 }
 .struct
 {
@@ -110,9 +96,13 @@ body
     height: auto;
     align-items: center;
     justify-content: center;
-    animation: appear 0.5s ease-in-out;
+    animation: appear 0.3s ease;
 }
 h5
+{
+    font-family: "SolwayBasic";
+}
+h6
 {
     font-family: "SolwayLight";
 }
@@ -152,7 +142,7 @@ h1
 }
 .bottom
 {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .spe
 {
@@ -162,33 +152,39 @@ h1
     border-radius: 20px;
     filter: drop-shadow(0px 3px 2px var(--font));
 }
-button
+.button
 {
-    background-color: var(--backbut);
     padding: 10px;
     margin: 15px;
     border-radius: 13px;
     border: solid var(--font) 3px;
     font-family: "SolwayBold";
     font-size: 13px;
-    box-shadow: 3px 3px 3px var(--font);
+    box-shadow: 3px 3px 4px var(--font);
     min-width: 100px;
+    background-color: var(--backbut);
 }
-button:active
+.button:active
 {
     scale: 0.95;
     box-shadow: 0px 0px 0px 0px var(--font);
 }
-h6
+a
 {
-    border-radius: 10px;
+    border-radius: 12px;
+    font-family: "SolwayBold";
     border: solid var(--font) 3px;
-    padding: 10px;
+    padding: 15px 20px 15px 20px;
+    font-size: 12px;
     margin: 0;
+    text-decoration: none;
+    box-shadow: 3px 3px 4px var(--font);
+    background-color: var(--backbut);
 }
-h6:active
+a:active
 {
     scale: 0.95;
+    box-shadow: 0px 0px 0px 0px var(--font);
 }
 h2
 {
@@ -197,13 +193,13 @@ h2
 #log
 {
     animation: backforth infinite 5s ease;
-    filter: blur(0.3px) drop-shadow(7px 4px 5px var(--font));
+    filter: blur(0.3px) drop-shadow(7px 4px 5px var(--shad));
 }
 #log:active
 {
     scale: 0.95;
     animation: none;
-    filter: blur(0px) drop-shadow(0px 0px 0px var(--font));
+    filter: blur(0px) drop-shadow(0px 0px 0px var(--shad));
 }
 form
 {
@@ -233,18 +229,71 @@ input:active
     border: solid var(--font) 3px;
     font-family: "SolwayBold";
     font-size: 13px;
-    box-shadow: 3px 3px 3px var(--font);
+    box-shadow: 3px 3px 3px var(--shad);
     min-width: 100px;
+    cursor: pointer;
 }
 .submit:active
 {
     scale: 0.95;
-    box-shadow: 0px 0px 0px 0px var(--font);
+    box-shadow: 0px 0px 0px 0px var(--shad);
 }
 .full
 {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    margin: auto;
+}
+.gride
+{
+    border: solid var(--font) 4px;
+    padding: 10px;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 85%;
+    display: flex;
+    flex: 1;
+    border-radius: 25px;
+    background-color: var(--silk);
+    margin: 20px;
+}
+.card
+{
+    height: auto;
+    width: auto;
+    margin: 10px;
+    border-radius: 15px;
+    border: solid 3px var(--font);
+    background-color: var(--back);
+    animation: appear 0.3s ease;
+    box-shadow: 3px 6px 4px var(--shad);
+}
+.card:active
+{
+    scale: 0.95;
+    box-shadow: 0px 0px 0px var(--shad);
+}
+.card.col h5,
+.card.col h6
+{
+    margin: 3px;
+}
+.container
+{
+    flex: 1;
+    object-fit: cover;
+    padding: 20px 30px;
+    border-radius: 12px;
+    border: solid 2px var(--font);
+}
+input[type="search"]
+{
+    border-radius: 100px;
+    width: 500px;
+    margin: 30px 0px 20px;
+    max-width: 75%;
+}
+input[type="search"]:active
+{
+    scale: 0.99
 }

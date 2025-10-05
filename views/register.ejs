@@ -14,8 +14,8 @@
                 <img id="log" src="/img/login.png" width="250" height="250">
                 <h4>Select a mark<h4>
                 <div class="row">
-                    <button id="backw"><-</button>
-                    <button id="forw">-></button>
+                    <button class="button" id="backw"><-</button>
+                    <button class="button" id="forw">-></button>
                 </div>
             </div>
             <div class="col">
@@ -25,7 +25,7 @@
                             <h4 class="spe"><%=locals.error%></h4>
                         <%}%>
                         <h2>Register a SilkAccount</h2>
-                        <form class="col" action="/register" method="post">
+                        <form class="col form" action="/register" method="post">
                             <input type="text" name="username" required minlength="5" placeholder="Username">
                             <input type="password" name="password" required minlength="8" placeholder="Password"> 
                             <input type="hidden" id="pic" name="pic" value="/img/login.png">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="row bottom">
-            <h6 onclick="location.href = '/login'">Go back to login</h6>
+            <a href='/login'>Go back to login</a>
         </div>
     </div>
     <script>
@@ -62,5 +62,6 @@
             document.getElementById("pic").value = "/img" + document.getElementById("log").src.split("/img")[1] 
         }
     </script>
+    <script src="/js/index.js"></script>
 </body>
 </html>
